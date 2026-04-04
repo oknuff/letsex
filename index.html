@@ -6,7 +6,7 @@
   <title>Rishad — Azizul Hakim</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&amp;family=Playfair+Display:ital,wght@0,600;1,400;1,600&amp;display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Playfair+Display:ital,wght@0,600;1,400;1,600&display=swap" rel="stylesheet" />
 <style>
 :root {
   --forest:    #1b3a2d;
@@ -185,6 +185,8 @@ h1 em {
 .section:nth-child(18) { animation-delay: 1.11s; }
 .section:nth-child(19) { animation-delay: 1.15s; }
 .section:nth-child(20) { animation-delay: 1.19s; }
+.section:nth-child(21) { animation-delay: 1.23s; }
+.section:nth-child(22) { animation-delay: 1.27s; }
 
 .section-label {
   font-size: 10px;
@@ -623,6 +625,169 @@ h1 em {
   font-size: 11px;
   color: var(--gold);
   letter-spacing: 0.06em;
+}
+
+/* ─── DATING HISTORY ─── */
+.history-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+}
+
+.history-timeline::before {
+  content: '';
+  position: absolute;
+  left: 19px;
+  top: 24px;
+  bottom: 24px;
+  width: 1px;
+  background: linear-gradient(180deg, rgba(196,122,122,0.3), rgba(92,143,103,0.2), transparent);
+}
+
+.history-entry {
+  display: flex;
+  gap: 18px;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.history-entry:last-child { padding-bottom: 0; }
+
+.history-dot-wrap {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 4px;
+}
+
+.history-dot {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  border: 2px solid;
+  background: var(--deep);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.history-dot--sweet {
+  border-color: rgba(138,184,154,0.7);
+  box-shadow: 0 0 8px rgba(92,143,103,0.3);
+}
+
+.history-dot--lesson {
+  border-color: rgba(196,122,122,0.6);
+  box-shadow: 0 0 8px rgba(196,122,122,0.2);
+}
+
+.history-card {
+  flex: 1;
+  border-radius: 14px;
+  padding: 18px 20px;
+  backdrop-filter: blur(4px);
+  transition: transform 0.22s ease, border-color 0.22s;
+}
+
+.history-card:hover { transform: translateX(4px); }
+
+.history-card--sweet {
+  background: rgba(58,107,74,0.12);
+  border: 1px solid rgba(138,184,154,0.15);
+}
+
+.history-card--sweet:hover { border-color: rgba(138,184,154,0.32); }
+
+.history-card--lesson {
+  background: rgba(40,18,18,0.5);
+  border: 1px solid rgba(196,122,122,0.18);
+}
+
+.history-card--lesson:hover { border-color: rgba(196,122,122,0.38); }
+
+.history-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.history-num {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 3px 9px;
+  border-radius: 99px;
+}
+
+.history-num--sweet {
+  color: var(--sage);
+  background: rgba(92,143,103,0.15);
+  border: 1px solid rgba(92,143,103,0.2);
+}
+
+.history-num--lesson {
+  color: var(--rose);
+  background: rgba(196,122,122,0.12);
+  border: 1px solid rgba(196,122,122,0.2);
+}
+
+.history-badge {
+  font-size: 10px;
+  color: rgba(194,217,200,0.4);
+  letter-spacing: 0.06em;
+}
+
+.history-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  color: var(--parchment);
+  margin-bottom: 7px;
+  line-height: 1.4;
+}
+
+.history-desc {
+  font-size: 13px;
+  color: rgba(194,217,200,0.6);
+  line-height: 1.72;
+}
+
+.history-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 10px;
+  font-size: 11px;
+  border-radius: 99px;
+  padding: 4px 12px;
+}
+
+.history-tag--sweet {
+  color: rgba(138,184,154,0.75);
+  background: rgba(92,143,103,0.1);
+  border: 1px solid rgba(92,143,103,0.18);
+}
+
+.history-tag--lesson {
+  color: rgba(196,122,122,0.75);
+  background: rgba(196,122,122,0.08);
+  border: 1px solid rgba(196,122,122,0.18);
+}
+
+.history-footer {
+  margin-top: 16px;
+  background: rgba(27,58,45,0.4);
+  border: 1px solid rgba(92,143,103,0.2);
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 13.5px;
+  color: rgba(194,217,200,0.6);
+  line-height: 1.7;
+  text-align: center;
 }
 
 /* ─── PARTNER SECTION ─── */
@@ -1112,6 +1277,54 @@ h1 em {
   </div>
 
   <div class="divider divider--rose"></div>
+
+  <!-- ─── DATING HISTORY ─── -->
+
+  <div class="section">
+    <p class="section-label section-label--rose">Dating history</p>
+
+    <div class="history-timeline">
+
+      <div class="history-entry">
+        <div class="history-dot-wrap">
+          <div class="history-dot history-dot--sweet"></div>
+        </div>
+        <div class="history-card history-card--sweet">
+          <div class="history-meta">
+            <span class="history-num history-num--sweet">01</span>
+            <span class="history-badge">· long distance</span>
+          </div>
+          <div class="history-headline">The primary school classmate</div>
+          <p class="history-desc">
+            She was sweet — genuinely so. We'd known each other from school, and what started as a connection carried into something more. But we were young, and distance has a way of exposing the gaps that immaturity can't bridge. We ended on the kind of terms that don't leave scars — just a quiet understanding that the timing wasn't right and neither of us were ready.
+          </p>
+          <div class="history-tag history-tag--sweet">🌱 Good memories, soft ending</div>
+        </div>
+      </div>
+
+      <div class="history-entry">
+        <div class="history-dot-wrap">
+          <div class="history-dot history-dot--lesson"></div>
+        </div>
+        <div class="history-card history-card--lesson">
+          <div class="history-meta">
+            <span class="history-num history-num--lesson">02</span>
+            <span class="history-badge">· long distance · met on Discord</span>
+          </div>
+          <div class="history-headline">The one who taught me what I don't want</div>
+          <p class="history-desc">
+            We had good moments — I won't pretend otherwise. But her values and mine weren't built the same. Character matters more than chemistry, and I learned that the hard way. We never met in person, and looking back, that's probably for the best. What I took from it: I know exactly what I'm not willing to compromise on now.
+          </p>
+          <div class="history-tag history-tag--lesson">📖 A lesson, not a loss</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="history-footer">
+      Two completely different people — one with a good heart, one with a very different kind of character. Both long distance, never met. Both taught me something. Now I know what I'm actually looking for.
+    </div>
+  </div>
 
   <!-- ─── PARTNER PREFERENCE ─── -->
 
