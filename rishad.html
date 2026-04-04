@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rishad — Azizul Hakim</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&amp;family=Playfair+Display:ital,wght@0,600;1,400;1,600&amp;display=swap" rel="stylesheet" />
+<style>
+:root {
+  --forest:    #1b3a2d;
+  --deep:      #0f2219;
+  --moss:      #3a6b4a;
+  --fern:      #5c8f67;
+  --sage:      #8ab89a;
+  --mist:      #c2d9c8;
+  --dew:       #e8f2eb;
+  --parchment: #f2ede4;
+  --gold:      #c9a84c;
+  --ink:       #0d1f16;
+  --cream:     #f7f3ec;
+  --rose:      #c47a7a;
+  --rose-soft: rgba(196,122,122,0.18);
+  --rose-line: rgba(196,122,122,0.28);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--deep);
+  color: var(--parchment);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+#leaf-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-gradient {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(58,107,74,0.35) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(27,58,45,0.5) 0%, transparent 55%),
+    radial-gradient(ellipse 100% 100% at 50% 50%, #0f2219 0%, #081510 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bg-texture {
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 72px 28px 100px;
+}
+
+/* HERO */
+.hero {
+  margin-bottom: 64px;
+  opacity: 0;
+  animation: riseIn 1s cubic-bezier(.22,1,.36,1) 0.15s forwards;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(92,143,103,0.18);
+  border: 1px solid rgba(138,184,154,0.3);
+  border-radius: 99px;
+  padding: 6px 16px 6px 10px;
+  font-size: 12px;
+  color: var(--sage);
+  margin-bottom: 28px;
+  letter-spacing: 0.04em;
+  backdrop-filter: blur(8px);
+}
+
+.status-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #7dbf7d;
+  box-shadow: 0 0 6px #7dbf7d;
+  animation: pulse 2.5s infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse {
+  0%,100% { opacity:1; box-shadow: 0 0 6px #7dbf7d; }
+  50%      { opacity:0.5; box-shadow: 0 0 2px #7dbf7d; }
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(48px, 12vw, 66px);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: var(--parchment);
+  margin-bottom: 6px;
+}
+
+h1 em {
+  font-style: italic;
+  color: var(--sage);
+}
+
+.nickname {
+  font-size: 13px;
+  color: rgba(194,217,200,0.55);
+  margin-bottom: 28px;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+}
+
+.quote-line {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: rgba(194,217,200,0.7);
+  border-left: 2px solid var(--fern);
+  padding-left: 16px;
+  line-height: 1.65;
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, var(--fern) 0%, transparent 100%);
+  margin: 44px 0;
+  opacity: 0.3;
+}
+
+.divider--rose {
+  background: linear-gradient(90deg, var(--rose) 0%, transparent 100%);
+}
+
+.section {
+  margin-bottom: 44px;
+  opacity: 0;
+  animation: riseIn 0.9s cubic-bezier(.22,1,.36,1) forwards;
+}
+.section:nth-child(3)  { animation-delay: 0.25s; }
+.section:nth-child(4)  { animation-delay: 0.35s; }
+.section:nth-child(5)  { animation-delay: 0.45s; }
+.section:nth-child(6)  { animation-delay: 0.55s; }
+.section:nth-child(7)  { animation-delay: 0.62s; }
+.section:nth-child(8)  { animation-delay: 0.68s; }
+.section:nth-child(9)  { animation-delay: 0.73s; }
+.section:nth-child(10) { animation-delay: 0.78s; }
+.section:nth-child(11) { animation-delay: 0.83s; }
+.section:nth-child(12) { animation-delay: 0.87s; }
+.section:nth-child(13) { animation-delay: 0.91s; }
+.section:nth-child(14) { animation-delay: 0.95s; }
+.section:nth-child(15) { animation-delay: 0.99s; }
+.section:nth-child(16) { animation-delay: 1.03s; }
+.section:nth-child(17) { animation-delay: 1.07s; }
+.section:nth-child(18) { animation-delay: 1.11s; }
+.section:nth-child(19) { animation-delay: 1.15s; }
+.section:nth-child(20) { animation-delay: 1.19s; }
+
+.section-label {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(92,143,103,0.4), transparent);
+}
+
+.section-label--rose {
+  color: var(--rose);
+}
+
+.section-label--rose::after {
+  background: linear-gradient(90deg, rgba(196,122,122,0.4), transparent);
+}
+
+/* INFO GRID */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.info-item {
+  background: rgba(58,107,74,0.12);
+  border: 1px solid rgba(138,184,154,0.12);
+  border-radius: 12px;
+  padding: 14px 16px;
+  transition: transform 0.25s ease, border-color 0.25s, background 0.25s;
+  backdrop-filter: blur(4px);
+}
+
+.info-item:hover {
+  transform: translateY(-3px);
+  border-color: rgba(138,184,154,0.3);
+  background: rgba(58,107,74,0.22);
+}
+
+.info-item .label {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 5px;
+  opacity: 0.7;
+}
+
+.info-item .value {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--parchment);
+  line-height: 1.35;
+}
+
+/* TAGS */
+.tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.tag {
+  font-size: 13px;
+  padding: 7px 14px;
+  background: rgba(58,107,74,0.15);
+  border-radius: 99px;
+  color: var(--mist);
+  font-weight: 400;
+  border: 1px solid rgba(138,184,154,0.15);
+  transition: border-color 0.2s, background 0.2s, transform 0.2s;
+}
+
+.tag:hover {
+  border-color: rgba(138,184,154,0.5);
+  background: rgba(58,107,74,0.28);
+  transform: translateY(-2px);
+}
+
+/* ABOUT */
+.about-text {
+  font-size: 15px;
+  line-height: 1.85;
+  color: rgba(194,217,200,0.82);
+  font-weight: 300;
+}
+
+.about-text strong { font-weight: 500; color: var(--dew); }
+
+/* PLACE CARD */
+.place-card {
+  background: rgba(58,107,74,0.14);
+  border: 1px solid rgba(138,184,154,0.15);
+  border-radius: 16px;
+  padding: 22px;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  backdrop-filter: blur(6px);
+}
+
+.place-icon {
+  font-size: 30px;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+  filter: drop-shadow(0 0 8px rgba(92,143,103,0.6));
+}
+
+.place-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: var(--parchment);
+  margin-bottom: 6px;
+}
+
+.place-desc {
+  font-size: 13px;
+  color: rgba(194,217,200,0.65);
+  line-height: 1.65;
+}
+
+/* GOAL CARD */
+.goal-card {
+  background: linear-gradient(135deg, rgba(27,58,45,0.9) 0%, rgba(15,34,25,0.95) 100%);
+  border: 1px solid rgba(92,143,103,0.35);
+  border-radius: 16px;
+  padding: 24px 22px;
+  position: relative;
+  overflow: hidden;
+}
+
+.goal-card::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 130px; height: 130px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(92,143,103,0.15) 0%, transparent 70%);
+}
+
+.goal-label {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.goal-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--parchment);
+  margin-bottom: 10px;
+}
+
+.goal-sub {
+  font-size: 13px;
+  color: rgba(138,184,154,0.65);
+  line-height: 1.7;
+}
+
+/* FREE DAY */
+.free-day-list { display: flex; flex-direction: column; gap: 8px; }
+
+.free-day-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(58,107,74,0.1);
+  border: 1px solid rgba(138,184,154,0.1);
+  border-radius: 12px;
+  padding: 13px 16px;
+  font-size: 14px;
+  color: rgba(194,217,200,0.8);
+  transition: transform 0.2s ease, border-color 0.2s, background 0.2s;
+}
+
+.free-day-item:hover {
+  transform: translateX(5px);
+  border-color: rgba(138,184,154,0.28);
+  background: rgba(58,107,74,0.2);
+}
+
+.free-day-item .icon { font-size: 18px; flex-shrink: 0; }
+
+/* QUOTE */
+.good-side {
+  background: rgba(58,107,74,0.12);
+  border: 1px solid rgba(138,184,154,0.15);
+  border-radius: 16px;
+  padding: 22px 24px;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.75;
+  color: rgba(194,217,200,0.85);
+  position: relative;
+}
+
+.good-side::before {
+  content: '\201C';
+  position: absolute;
+  top: -14px; left: 18px;
+  font-size: 72px;
+  color: var(--fern);
+  opacity: 0.25;
+  font-family: 'Playfair Display', serif;
+  line-height: 1;
+}
+
+/* GAMES GRID */
+.games-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.game-card {
+  background: rgba(58,107,74,0.12);
+  border: 1px solid rgba(138,184,154,0.12);
+  border-radius: 14px;
+  padding: 16px 16px 14px;
+  transition: transform 0.25s ease, border-color 0.25s, background 0.25s;
+  backdrop-filter: blur(4px);
+  cursor: default;
+}
+
+.game-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(138,184,154,0.35);
+  background: rgba(58,107,74,0.24);
+}
+
+.game-icon {
+  font-size: 26px;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 0 6px rgba(92,143,103,0.5));
+}
+
+.game-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--parchment);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.game-type {
+  font-size: 11px;
+  color: var(--sage);
+  opacity: 0.65;
+  letter-spacing: 0.04em;
+}
+
+/* BOOK CARD */
+.book-card {
+  background: rgba(58,107,74,0.12);
+  border: 1px solid rgba(138,184,154,0.15);
+  border-radius: 16px;
+  padding: 0;
+  display: flex;
+  overflow: hidden;
+  backdrop-filter: blur(6px);
+  transition: transform 0.25s ease, border-color 0.25s;
+}
+
+.book-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(138,184,154,0.32);
+}
+
+.book-spine {
+  width: 6px;
+  background: linear-gradient(180deg, var(--fern) 0%, var(--moss) 100%);
+  flex-shrink: 0;
+}
+
+.book-info {
+  padding: 20px 20px 18px;
+}
+
+.book-title {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--parchment);
+  line-height: 1.4;
+  margin-bottom: 5px;
+}
+
+.book-author {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.8;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.book-note {
+  font-size: 13px;
+  color: rgba(194,217,200,0.65);
+  line-height: 1.7;
+}
+
+/* FOOD CARD */
+.food-card {
+  background: rgba(58,107,74,0.12);
+  border: 1px solid rgba(138,184,154,0.15);
+  border-radius: 16px;
+  padding: 20px 22px;
+  backdrop-filter: blur(6px);
+}
+
+.food-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.food-emoji { font-size: 22px; }
+
+.food-headline {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: rgba(194,217,200,0.75);
+}
+
+.food-flow { display: flex; flex-direction: column; gap: 6px; }
+
+.food-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: rgba(58,107,74,0.14);
+  border: 1px solid rgba(138,184,154,0.1);
+  border-radius: 12px;
+  padding: 13px 15px;
+}
+
+.food-step-icon { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+
+.food-step-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--parchment);
+  margin-bottom: 4px;
+}
+
+.food-step-note {
+  font-size: 12px;
+  color: rgba(194,217,200,0.55);
+  line-height: 1.55;
+}
+
+.food-arrow {
+  text-align: center;
+  color: var(--fern);
+  opacity: 0.5;
+  font-size: 16px;
+  padding: 0 0 0 18px;
+  line-height: 1;
+}
+
+/* DREAM CARD */
+.dream-card {
+  background: linear-gradient(135deg, rgba(27,58,45,0.85) 0%, rgba(15,34,25,0.95) 100%);
+  border: 1px solid rgba(92,143,103,0.3);
+  border-radius: 16px;
+  padding: 30px 24px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(6px);
+}
+
+.dream-bg-text {
+  position: absolute;
+  top: 50%;
+  right: -8px;
+  transform: translateY(-50%);
+  font-family: 'Playfair Display', serif;
+  font-size: 72px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: rgba(92,143,103,0.08);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.dream-content { position: relative; z-index: 1; }
+
+.dream-wave-icon {
+  width: 52px;
+  height: 40px;
+  margin-bottom: 14px;
+  display: block;
+  filter: drop-shadow(0 0 10px rgba(92,143,103,0.55));
+}
+
+.dream-place {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  color: var(--parchment);
+  margin-bottom: 10px;
+}
+
+.dream-note {
+  font-size: 13px;
+  color: rgba(194,217,200,0.65);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.dream-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(201,168,76,0.12);
+  border: 1px solid rgba(201,168,76,0.25);
+  border-radius: 99px;
+  padding: 5px 14px;
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 0.06em;
+}
+
+/* ─── PARTNER SECTION ─── */
+
+.partner-hero {
+  background: linear-gradient(135deg, rgba(40,18,18,0.85) 0%, rgba(15,20,25,0.95) 100%);
+  border: 1px solid var(--rose-line);
+  border-radius: 20px;
+  padding: 28px 24px 24px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 16px;
+  backdrop-filter: blur(8px);
+}
+
+.partner-hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(196,122,122,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.partner-hero::after {
+  content: '♡';
+  position: absolute;
+  bottom: -10px; right: 18px;
+  font-size: 88px;
+  color: rgba(196,122,122,0.05);
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+
+.partner-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--rose);
+  font-weight: 500;
+  margin-bottom: 10px;
+  opacity: 0.85;
+}
+
+.partner-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  line-height: 1.45;
+  color: var(--parchment);
+  margin-bottom: 12px;
+}
+
+.partner-headline em {
+  font-style: italic;
+  color: rgba(196,122,122,0.85);
+}
+
+.partner-desc {
+  font-size: 13.5px;
+  color: rgba(194,217,200,0.65);
+  line-height: 1.8;
+  position: relative;
+  z-index: 1;
+}
+
+/* TRAIT PILLS */
+.trait-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.trait-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: var(--rose-soft);
+  border: 1px solid var(--rose-line);
+  border-radius: 14px;
+  padding: 14px 16px;
+  transition: transform 0.22s ease, border-color 0.22s, background 0.22s;
+}
+
+.trait-row:hover {
+  transform: translateX(5px);
+  border-color: rgba(196,122,122,0.45);
+  background: rgba(196,122,122,0.22);
+}
+
+.trait-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+
+.trait-title {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--parchment);
+  margin-bottom: 3px;
+}
+
+.trait-note {
+  font-size: 12px;
+  color: rgba(194,217,200,0.55);
+  line-height: 1.6;
+}
+
+/* DEALBREAKER CARD */
+.dealbreaker {
+  background: rgba(20,10,10,0.6);
+  border: 1px solid rgba(196,122,122,0.2);
+  border-left: 3px solid var(--rose);
+  border-radius: 14px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  backdrop-filter: blur(4px);
+}
+
+.dealbreaker-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+
+.dealbreaker-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(196,122,122,0.9);
+  margin-bottom: 4px;
+  letter-spacing: 0.04em;
+}
+
+.dealbreaker-note {
+  font-size: 13px;
+  color: rgba(194,217,200,0.55);
+  line-height: 1.65;
+}
+
+/* DYNAMIC TAG */
+.dynamic-card {
+  background: linear-gradient(135deg, rgba(30,15,30,0.8) 0%, rgba(15,20,25,0.9) 100%);
+  border: 1px solid rgba(196,122,122,0.22);
+  border-radius: 16px;
+  padding: 22px 22px 20px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(6px);
+}
+
+.dynamic-bg {
+  position: absolute;
+  top: 50%; left: -20px;
+  transform: translateY(-50%);
+  font-family: 'Playfair Display', serif;
+  font-size: 60px;
+  font-weight: 600;
+  color: rgba(196,122,122,0.05);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.dynamic-content { position: relative; z-index: 1; }
+
+.dynamic-pair {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.dynamic-me, .dynamic-her {
+  flex: 1;
+  background: rgba(255,255,255,0.04);
+  border-radius: 10px;
+  padding: 12px 14px;
+  text-align: center;
+}
+
+.dynamic-me { border: 1px solid rgba(92,143,103,0.3); }
+.dynamic-her { border: 1px solid rgba(196,122,122,0.3); }
+
+.dynamic-who {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.dynamic-me .dynamic-who { color: var(--sage); }
+.dynamic-her .dynamic-who { color: var(--rose); opacity: 0.8; }
+
+.dynamic-trait {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--parchment);
+  line-height: 1.35;
+}
+
+.dynamic-plus {
+  font-size: 22px;
+  color: rgba(196,122,122,0.4);
+  flex-shrink: 0;
+}
+
+.dynamic-note {
+  font-size: 12.5px;
+  color: rgba(194,217,200,0.55);
+  line-height: 1.7;
+  text-align: center;
+  font-style: italic;
+}
+
+/* LINKS */
+.links { display: flex; flex-direction: column; gap: 10px; }
+
+.link-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: rgba(58,107,74,0.12);
+  border: 1px solid rgba(138,184,154,0.12);
+  border-radius: 14px;
+  text-decoration: none;
+  color: var(--parchment);
+  font-size: 14px;
+  font-weight: 400;
+  transition: border-color 0.25s, background 0.25s, transform 0.22s;
+  backdrop-filter: blur(6px);
+}
+
+.link-btn:hover {
+  border-color: rgba(138,184,154,0.4);
+  background: rgba(58,107,74,0.25);
+  transform: translateX(5px);
+}
+
+.link-left { display: flex; align-items: center; gap: 14px; }
+
+.link-icon {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: rgba(58,107,74,0.3);
+  border: 1px solid rgba(138,184,154,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  flex-shrink: 0;
+}
+
+.link-name { font-size: 14px; color: var(--parchment); font-weight: 400; }
+.link-handle { font-size: 12px; color: var(--sage); margin-top: 2px; opacity: 0.75; }
+
+.arrow { color: var(--fern); font-size: 17px; transition: transform 0.2s; }
+.link-btn:hover .arrow { transform: translateX(4px); }
+
+.link-btn--ig {
+  background: rgba(40,85,55,0.2);
+  border-color: rgba(92,143,103,0.25);
+}
+.link-btn--ig:hover {
+  background: rgba(40,85,55,0.35);
+  border-color: rgba(92,143,103,0.5);
+}
+
+.link-btn--fb {
+  background: rgba(30,60,80,0.2);
+  border-color: rgba(80,130,180,0.25);
+}
+.link-btn--fb:hover {
+  background: rgba(30,60,80,0.35);
+  border-color: rgba(80,130,180,0.5);
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  font-size: 12px;
+  color: rgba(138,184,154,0.4);
+  margin-top: 64px;
+  opacity: 0;
+  animation: riseIn 1s cubic-bezier(.22,1,.36,1) 1s forwards;
+  letter-spacing: 0.08em;
+}
+
+.footer span { color: var(--gold); opacity: 0.7; }
+
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 360px) {
+  .info-grid { grid-template-columns: 1fr; }
+  .games-grid { grid-template-columns: 1fr; }
+  .dynamic-pair { flex-direction: column; }
+  .dynamic-plus { transform: rotate(90deg); }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-texture"></div>
+<canvas id="leaf-canvas"></canvas>
+
+<div class="container">
+
+  <div class="hero">
+    <div class="status-pill">
+      <span class="status-dot"></span>
+      Single &amp; looking for something serious that can potentially leads to marriage &lt;3
+    </div>
+    <p class="eyebrow">Hey, I'm</p>
+    <h1>Azizul<br><em>Hakim.</em></h1>
+    <p class="nickname">but everyone calls me Rishad &mdash; Jan 8, 2007</p>
+    <p class="quote-line">"Big dih, bigger heart — and somehow still the most patient person in the room."</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <p class="section-label">The basics</p>
+    <div class="info-grid">
+      <div class="info-item"><p class="label">Age</p><p class="value">19</p></div>
+      <div class="info-item"><p class="label">MBTI</p><p class="value">ISFJ</p></div>
+      <div class="info-item"><p class="label">Currently at</p><p class="value">Dhaka College, 12th</p></div>
+      <div class="info-item"><p class="label">Was at</p><p class="value">University Laboratory School &amp; College</p></div>
+      <div class="info-item"><p class="label">City</p><p class="value">Dhaka, BD</p></div>
+      <div class="info-item"><p class="label">From</p><p class="value">Barishal, BD</p></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">About</p>
+    <p class="about-text">
+      19, Dhaka. Still figuring things out — but doing it with intention.<br><br>
+      I'm the kind of person who notices the details most people scroll past. I cook, I game, I pick up a camera when something feels worth remembering. I love things that are <strong>natural</strong> — untouched, honest, real. Somewhere between late-night noodles and quiet walks through DU campus, I'm building toward something bigger.<br><br>
+      People don't always see it at first, but give it time — I have a way of becoming the person you didn't know you needed around.
+    </p>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Favourite place</p>
+    <div class="place-card">
+      <div class="place-icon">🌿</div>
+      <div>
+        <p class="place-name">Dhaka University Area</p>
+        <p class="place-desc">There's something about the old trees, the open roads, the quiet that somehow exists inside a city of millions. It just feels like the world slows down there.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Where I'm headed</p>
+    <div class="goal-card">
+      <p class="goal-label">The goal</p>
+      <p class="goal-text">Build a tech startup from scratch — something that actually solves a real problem.</p>
+      <p class="goal-sub">Economics, entrepreneurship, a life that actually means something. I'm not in a hurry — I'm just making sure every step counts.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">A free day looks like</p>
+    <div class="free-day-list">
+      <div class="free-day-item"><span class="icon">🍜</span><span>Making noodles — my own recipe, my own pace</span></div>
+      <div class="free-day-item"><span class="icon">📱</span><span>Scrolling social media, falling into rabbit holes</span></div>
+      <div class="free-day-item"><span class="icon">📖</span><span>Reading — lately <em>Things Only You See When You Slow Down</em></span></div>
+      <div class="free-day-item"><span class="icon">💭</span><span>Just thinking about everything. For a long time.</span></div>
+      <div class="free-day-item"><span class="icon">🌿</span><span>Being somewhere natural — or at least wishing I was</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">What people say</p>
+    <div class="good-side">
+      "The one who always sees the good in you — and somehow knows exactly what to say when it matters."
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Games I play</p>
+    <div class="games-grid">
+      <div class="game-card">
+        <div class="game-icon">🎯</div>
+        <div class="game-name">Counter-Strike 2</div>
+        <div class="game-type">FPS / Tactical</div>
+      </div>
+      <div class="game-card">
+        <div class="game-icon">🪖</div>
+        <div class="game-name">PUBG PC</div>
+        <div class="game-type">Battle Royale</div>
+      </div>
+      <div class="game-card">
+        <div class="game-icon">🌆</div>
+        <div class="game-name">Cyberpunk 2077</div>
+        <div class="game-type">Open World RPG</div>
+      </div>
+      <div class="game-card">
+        <div class="game-icon">🏔️</div>
+        <div class="game-name">Riders Republic</div>
+        <div class="game-type">Extreme Sports</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Favourite book</p>
+    <div class="book-card">
+      <div class="book-spine"></div>
+      <div class="book-info">
+        <div class="book-title">Things Only You Can See When You Slow Down</div>
+        <div class="book-author">Haemin Sunim</div>
+        <p class="book-note">The kind of book that makes you stop mid-page and just sit with a thought for a while. Feels like someone finally put words to what I already knew but couldn't say.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">My restaurant order</p>
+    <div class="food-card">
+      <div class="food-header">
+        <span class="food-emoji">🍽️</span>
+        <span class="food-headline">The perfect meal, honestly</span>
+      </div>
+      <div class="food-flow">
+        <div class="food-step">
+          <div class="food-step-icon">🥘</div>
+          <div>
+            <div class="food-step-name">Nehari with Nun</div>
+            <div class="food-step-note">Slow-cooked, rich, the kind of meal that fills you up for the whole day. No substitutes.</div>
+          </div>
+        </div>
+        <div class="food-arrow">↓</div>
+        <div class="food-step">
+          <div class="food-step-icon">🥛</div>
+          <div>
+            <div class="food-step-name">Lacchhi to finish</div>
+            <div class="food-step-note">Cold, sweet, the perfect ending — non-negotiable, always at the last.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Dream destination</p>
+    <div class="dream-card">
+      <div class="dream-bg-text">HAWAII</div>
+      <div class="dream-content">
+        <svg class="dream-wave-icon" viewBox="0 0 52 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="41" cy="9" r="5" fill="#c9a84c" opacity="0.6"/>
+          <line x1="41" y1="2" x2="41" y2="0.5" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" opacity="0.5"/>
+          <line x1="46.2" y1="3.8" x2="47.2" y2="2.8" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" opacity="0.5"/>
+          <line x1="48" y1="9" x2="49.5" y2="9" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" opacity="0.5"/>
+          <line x1="46.2" y1="14.2" x2="47.2" y2="15.2" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" opacity="0.5"/>
+          <path d="M2 22 C6 14, 13 10, 17 17 C21 24, 25 13, 30 15 C34 17, 36 11, 40 14 C43 16, 46 19, 50 18"
+                stroke="#5c8f67" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+          <path d="M2 28 C7 19, 15 16, 19 23 C23 30, 27 18, 33 21 C37 23, 40 17, 44 20 C47 22, 49 25, 50 24"
+                stroke="#8ab89a" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.7"/>
+          <path d="M2 34 C8 25, 16 22, 21 29 C25 35, 29 26, 35 28 C39 30, 42 24, 46 27 C48 29, 50 31, 50 30"
+                stroke="#c2d9c8" stroke-width="1.4" stroke-linecap="round" fill="none" opacity="0.4"/>
+        </svg>
+        <div class="dream-place">Hawai'i, USA</div>
+        <p class="dream-note">Somewhere between the ocean and the mountains, where everything just feels alive and unhurried. The kind of place you see in pictures and think — I need to be there one day. One day.</p>
+        <div class="dream-badge">✦ Someday bucket list</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Into</p>
+    <div class="tags">
+      <span class="tag">🍜 Cooking noodles</span>
+      <span class="tag">🌿 Nature &amp; natural things</span>
+      <span class="tag">📷 Editing</span>
+      <span class="tag">🎮 Gaming</span>
+      <span class="tag">🚶 Walking</span>
+      <span class="tag">✈️ Travelling</span>
+      <span class="tag">🎥 Fun videography</span>
+      <span class="tag">💻 Fun coding</span>
+      <span class="tag">🗣️ Yapping</span>
+      <span class="tag">☕ Hangouts</span>
+      <span class="tag">⚽ Sports</span>
+    </div>
+  </div>
+
+  <div class="divider divider--rose"></div>
+
+  <!-- ─── PARTNER PREFERENCE ─── -->
+
+  <div class="section">
+    <p class="section-label section-label--rose">Looking for</p>
+
+    <div class="partner-hero">
+      <p class="partner-eyebrow">My type</p>
+      <p class="partner-headline">Someone who feels like <em>calm</em> and <em>fire</em> at the same time.</p>
+      <p class="partner-desc">
+        18 and above. Doesn't have to be perfectly religious — but faith should be part of who she is, not just a label. The kind of girl who carries herself with quiet strength, but has a softness underneath that she doesn't show everyone. Real presence over constant contact — I'd rather have one honest hour than a hundred texts that say nothing.
+      </p>
+    </div>
+
+    <div class="trait-grid">
+      <div class="trait-row">
+        <span class="trait-icon">🪞</span>
+        <div>
+          <div class="trait-title">Genuinely attractive — to me, that starts with confidence</div>
+          <div class="trait-note">She doesn't have to try hard. Natural, real, comfortable in her own skin. That's the kind of beauty that actually stays.</div>
+        </div>
+      </div>
+      <div class="trait-row">
+        <span class="trait-icon">🌊</span>
+        <div>
+          <div class="trait-title">Emotional depth — she actually feels things</div>
+          <div class="trait-note">Not performative. She thinks deeply, loves quietly, and isn't afraid of a real conversation. Shallow doesn't do it for me.</div>
+        </div>
+      </div>
+      <div class="trait-row">
+        <span class="trait-icon">🕊️</span>
+        <div>
+          <div class="trait-title">Soft & strong — not one or the other</div>
+          <div class="trait-note">She has her own spine. She's gentle but not a pushover. There's a version of her most people don't get to see — and I want to be the one who does.</div>
+        </div>
+      </div>
+      <div class="trait-row">
+        <span class="trait-icon">🕌</span>
+        <div>
+          <div class="trait-title">Religious, but flexible — not rigid, just grounded</div>
+          <div class="trait-note">Faith is part of her foundation, not a performance. She lives it quietly and doesn't judge others for where they are in their journey.</div>
+        </div>
+      </div>
+      <div class="trait-row">
+        <span class="trait-icon">⏳</span>
+        <div>
+          <div class="trait-title">Quality over quantity — presence, not noise</div>
+          <div class="trait-note">She doesn't need to fill every silence. When we're together, we're actually together. That kind of attention is rare and I notice it.</div>
+        </div>
+      </div>
+      <div class="trait-row">
+        <span class="trait-icon">🔄</span>
+        <div>
+          <div class="trait-title">A clean slate — moving forward, not carrying the past</div>
+          <div class="trait-note">Past is past. What matters is that she's done with it and she's choosing something real now. Growth matters more to me than history.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label section-label--rose">The dynamic</p>
+    <div class="dynamic-card">
+      <div class="dynamic-bg">balance</div>
+      <div class="dynamic-content">
+        <div class="dynamic-pair">
+          <div class="dynamic-me">
+            <div class="dynamic-who">Me</div>
+            <div class="dynamic-trait">Patient. Quiet ambition. Big picture thinker.</div>
+          </div>
+          <div class="dynamic-plus">+</div>
+          <div class="dynamic-her">
+            <div class="dynamic-who">Her</div>
+            <div class="dynamic-trait">The energy I don't have. The balance I need.</div>
+          </div>
+        </div>
+        <p class="dynamic-note">Opposite energy — not clash, but complement. She fills the spaces I leave, I slow down the pace she sometimes forgets to question. Together it just works.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label section-label--rose">Non-negotiable</p>
+    <div class="dealbreaker">
+      <span class="dealbreaker-icon">🚫</span>
+      <div>
+        <div class="dealbreaker-title">Dishonesty — in any form</div>
+        <div class="dealbreaker-note">Two-faced, inconsistent, says one thing and does another — that's the one thing I genuinely can't get past. I'd rather hear something hard and real than something easy and hollow. Honesty isn't optional.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <p class="section-label">Find me</p>
+    <div class="links">
+
+      <a href="https://instagram.com/rishadhq" class="link-btn link-btn--ig" target="_blank">
+        <div class="link-left">
+          <div class="link-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <rect x="2" y="2" width="20" height="20" rx="6" stroke="#8ab89a" stroke-width="1.8"/>
+              <circle cx="12" cy="12" r="4.5" stroke="#8ab89a" stroke-width="1.8"/>
+              <circle cx="17.5" cy="6.5" r="1" fill="#8ab89a"/>
+            </svg>
+          </div>
+          <div>
+            <div class="link-name">Instagram</div>
+            <div class="link-handle">@rishadhq</div>
+          </div>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+
+      <a href="https://facebook.com/taughtrishad" class="link-btn link-btn--fb" target="_blank">
+        <div class="link-left">
+          <div class="link-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <rect x="2" y="2" width="20" height="20" rx="6" stroke="#7aaedc" stroke-width="1.8"/>
+              <path d="M13 21v-8h2.5l.5-3H13V8.5C13 7.67 13.33 7 14.5 7H16V4.5S15.1 4 13.8 4C11.6 4 11 5.4 11 7v3H8.5v3H11v8" stroke="#7aaedc" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <div class="link-name">Facebook</div>
+            <div class="link-handle">facebook.com/taughtrishad</div>
+          </div>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+
+      <a href="https://discord.com/users/mindsopeaceful" class="link-btn" target="_blank">
+        <div class="link-left">
+          <div class="link-icon">🎮</div>
+          <div>
+            <div class="link-name">Discord</div>
+            <div class="link-handle">mindsopeaceful</div>
+          </div>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+
+      <a href="mailto:azsksk123@gmail.com" class="link-btn">
+        <div class="link-left">
+          <div class="link-icon">✉️</div>
+          <div>
+            <div class="link-name">Email me</div>
+            <div class="link-handle">azsksk123@gmail.com</div>
+          </div>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    made with quiet attention &nbsp;<span>✦</span>&nbsp; rishad &copy; 2025
+  </div>
+
+</div>
+
+<script>
+const canvas = document.getElementById('leaf-canvas');
+const ctx = canvas.getContext('2d');
+
+function resize() {
+  canvas.width  = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+const LEAF_COLORS = [
+  'rgba(92,143,103,',
+  'rgba(58,107,74,',
+  'rgba(138,184,154,',
+  'rgba(43,90,60,',
+  'rgba(74,124,87,',
+  'rgba(110,160,120,',
+];
+
+function drawLeaf(ctx, x, y, w, h, angle, alpha, shape) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.rotate(angle);
+  ctx.globalAlpha = alpha;
+
+  if (shape === 0) {
+    ctx.beginPath();
+    ctx.ellipse(0, 0, w * 0.38, h * 0.18, 0, 0, Math.PI * 2);
+    ctx.fill();
+  } else if (shape === 1) {
+    ctx.beginPath();
+    ctx.moveTo(0, -h * 0.22);
+    ctx.bezierCurveTo(w * 0.22, -h * 0.1, w * 0.22, h * 0.1, 0, h * 0.22);
+    ctx.bezierCurveTo(-w * 0.22, h * 0.1, -w * 0.22, -h * 0.1, 0, -h * 0.22);
+    ctx.fill();
+  } else if (shape === 2) {
+    ctx.beginPath();
+    ctx.moveTo(0, -h * 0.25);
+    ctx.lineTo(w * 0.15, -h * 0.08);
+    ctx.lineTo(w * 0.28, -h * 0.18);
+    ctx.lineTo(w * 0.22, 0);
+    ctx.lineTo(w * 0.28, h * 0.1);
+    ctx.lineTo(0, h * 0.25);
+    ctx.lineTo(-w * 0.28, h * 0.1);
+    ctx.lineTo(-w * 0.22, 0);
+    ctx.lineTo(-w * 0.28, -h * 0.18);
+    ctx.lineTo(-w * 0.15, -h * 0.08);
+    ctx.closePath();
+    ctx.fill();
+  } else {
+    ctx.beginPath();
+    ctx.arc(0, 0, w * 0.08, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  ctx.restore();
+}
+
+class Leaf {
+  constructor() { this.reset(true); }
+
+  reset(init = false) {
+    this.x     = Math.random() * canvas.width;
+    this.y     = init ? Math.random() * canvas.height : -30;
+    this.size  = 14 + Math.random() * 28;
+    this.speed = 0.4 + Math.random() * 0.9;
+    this.wind  = (Math.random() - 0.45) * 0.6;
+    this.rot   = Math.random() * Math.PI * 2;
+    this.rotSpd= (Math.random() - 0.5) * 0.025;
+    this.sway  = Math.random() * Math.PI * 2;
+    this.swaySpd = 0.008 + Math.random() * 0.014;
+    this.swayAmp = 0.4 + Math.random() * 1.2;
+    this.alpha = 0.08 + Math.random() * 0.28;
+    this.colorIdx = Math.floor(Math.random() * LEAF_COLORS.length);
+    this.shape = Math.floor(Math.random() * 4);
+  }
+
+  update() {
+    this.sway += this.swaySpd;
+    this.x    += this.wind + Math.sin(this.sway) * this.swayAmp;
+    this.y    += this.speed;
+    this.rot  += this.rotSpd;
+    if (this.y > canvas.height + 40) this.reset();
+    if (this.x > canvas.width  + 60) this.x = -60;
+    if (this.x < -60)                this.x = canvas.width + 60;
+  }
+
+  draw() {
+    ctx.fillStyle = LEAF_COLORS[this.colorIdx] + this.alpha + ')';
+    drawLeaf(ctx, this.x, this.y, this.size, this.size, this.rot, 1, this.shape);
+  }
+}
+
+class WindStreak {
+  constructor() { this.reset(true); }
+
+  reset(init = false) {
+    this.x    = init ? Math.random() * canvas.width : -120;
+    this.y    = Math.random() * canvas.height;
+    this.len  = 30 + Math.random() * 90;
+    this.speed= 2 + Math.random() * 4;
+    this.alpha= 0.015 + Math.random() * 0.04;
+    this.angle= -0.05 + Math.random() * 0.1;
+  }
+
+  update() {
+    this.x += this.speed;
+    if (this.x > canvas.width + this.len) this.reset();
+  }
+
+  draw() {
+    ctx.save();
+    ctx.globalAlpha = this.alpha;
+    ctx.strokeStyle = 'rgba(138,184,154,1)';
+    ctx.lineWidth = 0.5;
+    ctx.beginPath();
+    ctx.moveTo(this.x, this.y);
+    ctx.lineTo(this.x + Math.cos(this.angle) * this.len, this.y + Math.sin(this.angle) * this.len);
+    ctx.stroke();
+    ctx.restore();
+  }
+}
+
+const leaves     = Array.from({ length: 55 }, () => new Leaf());
+const windStreaks = Array.from({ length: 18 }, () => new WindStreak());
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  windStreaks.forEach(w => { w.update(); w.draw(); });
+  leaves.forEach(l => { l.update(); l.draw(); });
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+</body>
+</html>
