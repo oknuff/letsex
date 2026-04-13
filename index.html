@@ -6,7 +6,7 @@
   <title>Rishad — Azizul Hakim</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Playfair+Display:ital,wght@0,600;1,400;1,600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet" />
 <style>
 :root {
   --forest:    #1b3a2d;
@@ -128,8 +128,9 @@ h1 {
   margin-bottom: 6px;
 }
 
+/* no italic on h1 em — just color accent */
 h1 em {
-  font-style: italic;
+  font-style: normal;
   color: var(--sage);
 }
 
@@ -142,8 +143,9 @@ h1 em {
 }
 
 .quote-line {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
+  font-family: 'Jost', sans-serif;
+  font-style: normal;
+  font-weight: 300;
   font-size: 15px;
   color: rgba(194,217,200,0.7);
   border-left: 2px solid var(--fern);
@@ -304,8 +306,9 @@ h1 em {
 }
 
 .place-name {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Jost', sans-serif;
   font-size: 18px;
+  font-weight: 500;
   color: var(--parchment);
   margin-bottom: 6px;
 }
@@ -345,8 +348,9 @@ h1 em {
 }
 
 .goal-text {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Jost', sans-serif;
   font-size: 19px;
+  font-weight: 500;
   line-height: 1.5;
   color: var(--parchment);
   margin-bottom: 10px;
@@ -388,8 +392,9 @@ h1 em {
   border: 1px solid rgba(138,184,154,0.15);
   border-radius: 16px;
   padding: 22px 24px;
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
+  font-family: 'Jost', sans-serif;
+  font-style: normal;
+  font-weight: 300;
   font-size: 16px;
   line-height: 1.75;
   color: rgba(194,217,200,0.85);
@@ -403,7 +408,7 @@ h1 em {
   font-size: 72px;
   color: var(--fern);
   opacity: 0.25;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Jost', sans-serif;
   line-height: 1;
 }
 
@@ -479,8 +484,9 @@ h1 em {
 }
 
 .book-title {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
+  font-family: 'Jost', sans-serif;
+  font-style: normal;
+  font-weight: 500;
   font-size: 16px;
   color: var(--parchment);
   line-height: 1.4;
@@ -522,8 +528,9 @@ h1 em {
 .food-emoji { font-size: 22px; }
 
 .food-headline {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
+  font-family: 'Jost', sans-serif;
+  font-style: normal;
+  font-weight: 400;
   font-size: 15px;
   color: rgba(194,217,200,0.75);
 }
@@ -580,7 +587,7 @@ h1 em {
   top: 50%;
   right: -8px;
   transform: translateY(-50%);
-  font-family: 'Playfair Display', serif;
+  font-family: 'Jost', sans-serif;
   font-size: 72px;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -601,8 +608,9 @@ h1 em {
 }
 
 .dream-place {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Jost', sans-serif;
   font-size: 22px;
+  font-weight: 500;
   color: var(--parchment);
   margin-bottom: 10px;
 }
@@ -741,7 +749,8 @@ h1 em {
 }
 
 .history-headline {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Jost', sans-serif;
+  font-weight: 500;
   font-size: 15px;
   color: var(--parchment);
   margin-bottom: 7px;
@@ -782,8 +791,9 @@ h1 em {
   border: 1px solid rgba(92,143,103,0.2);
   border-radius: 12px;
   padding: 14px 18px;
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
+  font-family: 'Jost', sans-serif;
+  font-style: normal;
+  font-weight: 300;
   font-size: 13.5px;
   color: rgba(194,217,200,0.6);
   line-height: 1.7;
@@ -835,15 +845,17 @@ h1 em {
 }
 
 .partner-headline {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Jost', sans-serif;
   font-size: 20px;
+  font-weight: 500;
   line-height: 1.45;
   color: var(--parchment);
   margin-bottom: 12px;
 }
 
+/* no italic on em inside partner-headline */
 .partner-headline em {
-  font-style: italic;
+  font-style: normal;
   color: rgba(196,122,122,0.85);
 }
 
@@ -938,7 +950,7 @@ h1 em {
   position: absolute;
   top: 50%; left: -20px;
   transform: translateY(-50%);
-  font-family: 'Playfair Display', serif;
+  font-family: 'Jost', sans-serif;
   font-size: 60px;
   font-weight: 600;
   color: rgba(196,122,122,0.05);
@@ -979,8 +991,9 @@ h1 em {
 .dynamic-her .dynamic-who { color: var(--rose); opacity: 0.8; }
 
 .dynamic-trait {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
+  font-family: 'Jost', sans-serif;
+  font-style: normal;
+  font-weight: 400;
   font-size: 14px;
   color: var(--parchment);
   line-height: 1.35;
@@ -997,7 +1010,7 @@ h1 em {
   color: rgba(194,217,200,0.55);
   line-height: 1.7;
   text-align: center;
-  font-style: italic;
+  font-style: normal;
 }
 
 /* LINKS */
@@ -1100,7 +1113,7 @@ h1 em {
   <div class="hero">
     <div class="status-pill">
       <span class="status-dot"></span>
-      Single &amp; looking for something serious that can potentially leads to marriage &lt;3
+      Single &amp; cant fuck around as whores &lt;3
     </div>
     <p class="eyebrow">Hey, I'm</p>
     <h1>Azizul<br><em>Hakim.</em></h1>
@@ -1156,7 +1169,7 @@ h1 em {
     <div class="free-day-list">
       <div class="free-day-item"><span class="icon">🍜</span><span>Making noodles — my own recipe, my own pace</span></div>
       <div class="free-day-item"><span class="icon">📱</span><span>Scrolling social media, falling into rabbit holes</span></div>
-      <div class="free-day-item"><span class="icon">📖</span><span>Reading — lately <em>Things Only You See When You Slow Down</em></span></div>
+      <div class="free-day-item"><span class="icon">📖</span><span>Reading — lately Things Only You See When You Slow Down</span></div>
       <div class="free-day-item"><span class="icon">💭</span><span>Just thinking about everything. For a long time.</span></div>
       <div class="free-day-item"><span class="icon">🌿</span><span>Being somewhere natural — or at least wishing I was</span></div>
     </div>
@@ -1335,87 +1348,15 @@ h1 em {
       <p class="partner-eyebrow">My type</p>
       <p class="partner-headline">Someone who feels like <em>calm</em> and <em>fire</em> at the same time.</p>
       <p class="partner-desc">
-        18 and above. Doesn't have to be perfectly religious — but faith should be part of who she is, not just a label. The kind of girl who carries herself with quiet strength, but has a softness underneath that she doesn't show everyone. Real presence over constant contact — I'd rather have one honest hour than a hundred texts that say nothing.
+        Someone who is all in — who wants her person completely and means it.
+        She doesn't let me feel alone even in a crowded room. She comes from a
+        warm, close-knit family and carries that love into everything she does.
+        Independent enough to stand on her own, yet she wants a man — not needs
+        one out of weakness, but chooses one out of depth. And when she finds him,
+        he is enough. In the soft moments and the hard ones both.
       </p>
     </div>
 
-    <div class="trait-grid">
-      <div class="trait-row">
-        <span class="trait-icon">🪞</span>
-        <div>
-          <div class="trait-title">Genuinely attractive — to me, that starts with confidence</div>
-          <div class="trait-note">She doesn't have to try hard. Natural, real, comfortable in her own skin. That's the kind of beauty that actually stays.</div>
-        </div>
-      </div>
-      <div class="trait-row">
-        <span class="trait-icon">🌊</span>
-        <div>
-          <div class="trait-title">Emotional depth — she actually feels things</div>
-          <div class="trait-note">Not performative. She thinks deeply, loves quietly, and isn't afraid of a real conversation. Shallow doesn't do it for me.</div>
-        </div>
-      </div>
-      <div class="trait-row">
-        <span class="trait-icon">🕊️</span>
-        <div>
-          <div class="trait-title">Soft & strong — not one or the other</div>
-          <div class="trait-note">She has her own spine. She's gentle but not a pushover. There's a version of her most people don't get to see — and I want to be the one who does.</div>
-        </div>
-      </div>
-      <div class="trait-row">
-        <span class="trait-icon">🕌</span>
-        <div>
-          <div class="trait-title">Religious, but flexible — not rigid, just grounded</div>
-          <div class="trait-note">Faith is part of her foundation, not a performance. She lives it quietly and doesn't judge others for where they are in their journey.</div>
-        </div>
-      </div>
-      <div class="trait-row">
-        <span class="trait-icon">⏳</span>
-        <div>
-          <div class="trait-title">Quality over quantity — presence, not noise</div>
-          <div class="trait-note">She doesn't need to fill every silence. When we're together, we're actually together. That kind of attention is rare and I notice it.</div>
-        </div>
-      </div>
-      <div class="trait-row">
-        <span class="trait-icon">🔄</span>
-        <div>
-          <div class="trait-title">A clean slate — moving forward, not carrying the past</div>
-          <div class="trait-note">Past is past. What matters is that she's done with it and she's choosing something real now. Growth matters more to me than history.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <p class="section-label section-label--rose">The dynamic</p>
-    <div class="dynamic-card">
-      <div class="dynamic-bg">balance</div>
-      <div class="dynamic-content">
-        <div class="dynamic-pair">
-          <div class="dynamic-me">
-            <div class="dynamic-who">Me</div>
-            <div class="dynamic-trait">Patient. Quiet ambition. Big picture thinker.</div>
-          </div>
-          <div class="dynamic-plus">+</div>
-          <div class="dynamic-her">
-            <div class="dynamic-who">Her</div>
-            <div class="dynamic-trait">The energy I don't have. The balance I need.</div>
-          </div>
-        </div>
-        <p class="dynamic-note">Opposite energy — not clash, but complement. She fills the spaces I leave, I slow down the pace she sometimes forgets to question. Together it just works.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <p class="section-label section-label--rose">Non-negotiable</p>
-    <div class="dealbreaker">
-      <span class="dealbreaker-icon">🚫</span>
-      <div>
-        <div class="dealbreaker-title">Dishonesty — in any form</div>
-        <div class="dealbreaker-note">Two-faced, inconsistent, says one thing and does another — that's the one thing I genuinely can't get past. I'd rather hear something hard and real than something easy and hollow. Honesty isn't optional.</div>
-      </div>
-    </div>
-  </div>
 
   <div class="divider"></div>
 
