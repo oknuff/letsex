@@ -20,9 +20,6 @@
   --gold:      #c9a84c;
   --ink:       #0d1f16;
   --cream:     #f7f3ec;
-  --rose:      #c47a7a;
-  --rose-soft: rgba(196,122,122,0.18);
-  --rose-line: rgba(196,122,122,0.28);
 }
 
 html { scroll-behavior: smooth; }
@@ -76,7 +73,7 @@ body {
 
 /* HERO */
 .hero {
-  margin-bottom: 64px;
+  margin-bottom: 52px;
   opacity: 0;
   animation: riseIn 1s cubic-bezier(.22,1,.36,1) 0.15s forwards;
 }
@@ -91,7 +88,7 @@ body {
   padding: 6px 16px 6px 10px;
   font-size: 12px;
   color: var(--sage);
-  margin-bottom: 28px;
+  margin-bottom: 24px;
   letter-spacing: 0.04em;
   backdrop-filter: blur(8px);
 }
@@ -115,20 +112,19 @@ body {
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   font-weight: 500;
 }
 
 h1 {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(48px, 12vw, 66px);
+  font-size: clamp(44px, 11vw, 62px);
   line-height: 1.0;
   letter-spacing: -0.02em;
   color: var(--parchment);
   margin-bottom: 6px;
 }
 
-/* no italic on h1 em — just color accent */
 h1 em {
   font-style: normal;
   color: var(--sage);
@@ -136,17 +132,16 @@ h1 em {
 
 .nickname {
   font-size: 13px;
-  color: rgba(194,217,200,0.55);
-  margin-bottom: 28px;
+  color: rgba(194,217,200,0.5);
+  margin-bottom: 24px;
   font-weight: 400;
   letter-spacing: 0.03em;
 }
 
 .quote-line {
   font-family: 'Jost', sans-serif;
-  font-style: normal;
   font-weight: 300;
-  font-size: 15px;
+  font-size: 14.5px;
   color: rgba(194,217,200,0.7);
   border-left: 2px solid var(--fern);
   padding-left: 16px;
@@ -156,39 +151,26 @@ h1 em {
 .divider {
   height: 1px;
   background: linear-gradient(90deg, var(--fern) 0%, transparent 100%);
-  margin: 44px 0;
+  margin: 36px 0;
   opacity: 0.3;
 }
 
-.divider--rose {
-  background: linear-gradient(90deg, var(--rose) 0%, transparent 100%);
-}
-
 .section {
-  margin-bottom: 44px;
+  margin-bottom: 36px;
   opacity: 0;
   animation: riseIn 0.9s cubic-bezier(.22,1,.36,1) forwards;
 }
 .section:nth-child(3)  { animation-delay: 0.25s; }
 .section:nth-child(4)  { animation-delay: 0.35s; }
 .section:nth-child(5)  { animation-delay: 0.45s; }
-.section:nth-child(6)  { animation-delay: 0.55s; }
-.section:nth-child(7)  { animation-delay: 0.62s; }
-.section:nth-child(8)  { animation-delay: 0.68s; }
-.section:nth-child(9)  { animation-delay: 0.73s; }
-.section:nth-child(10) { animation-delay: 0.78s; }
-.section:nth-child(11) { animation-delay: 0.83s; }
-.section:nth-child(12) { animation-delay: 0.87s; }
-.section:nth-child(13) { animation-delay: 0.91s; }
-.section:nth-child(14) { animation-delay: 0.95s; }
-.section:nth-child(15) { animation-delay: 0.99s; }
-.section:nth-child(16) { animation-delay: 1.03s; }
-.section:nth-child(17) { animation-delay: 1.07s; }
-.section:nth-child(18) { animation-delay: 1.11s; }
-.section:nth-child(19) { animation-delay: 1.15s; }
-.section:nth-child(20) { animation-delay: 1.19s; }
-.section:nth-child(21) { animation-delay: 1.23s; }
-.section:nth-child(22) { animation-delay: 1.27s; }
+.section:nth-child(6)  { animation-delay: 0.52s; }
+.section:nth-child(7)  { animation-delay: 0.58s; }
+.section:nth-child(8)  { animation-delay: 0.64s; }
+.section:nth-child(9)  { animation-delay: 0.70s; }
+.section:nth-child(10) { animation-delay: 0.76s; }
+.section:nth-child(11) { animation-delay: 0.82s; }
+.section:nth-child(12) { animation-delay: 0.88s; }
+.section:nth-child(13) { animation-delay: 0.94s; }
 
 .section-label {
   font-size: 10px;
@@ -196,7 +178,7 @@ h1 em {
   text-transform: uppercase;
   color: var(--gold);
   font-weight: 500;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -209,32 +191,24 @@ h1 em {
   background: linear-gradient(90deg, rgba(92,143,103,0.4), transparent);
 }
 
-.section-label--rose {
-  color: var(--rose);
-}
-
-.section-label--rose::after {
-  background: linear-gradient(90deg, rgba(196,122,122,0.4), transparent);
-}
-
 /* INFO GRID */
 .info-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: 8px;
 }
 
 .info-item {
   background: rgba(58,107,74,0.12);
   border: 1px solid rgba(138,184,154,0.12);
   border-radius: 12px;
-  padding: 14px 16px;
+  padding: 12px 14px;
   transition: transform 0.25s ease, border-color 0.25s, background 0.25s;
   backdrop-filter: blur(4px);
 }
 
 .info-item:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   border-color: rgba(138,184,154,0.3);
   background: rgba(58,107,74,0.22);
 }
@@ -244,23 +218,23 @@ h1 em {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--sage);
-  margin-bottom: 5px;
+  margin-bottom: 4px;
   opacity: 0.7;
 }
 
 .info-item .value {
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 500;
   color: var(--parchment);
   line-height: 1.35;
 }
 
 /* TAGS */
-.tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tags { display: flex; flex-wrap: wrap; gap: 7px; }
 
 .tag {
   font-size: 13px;
-  padding: 7px 14px;
+  padding: 6px 13px;
   background: rgba(58,107,74,0.15);
   border-radius: 99px;
   color: var(--mist);
@@ -277,7 +251,7 @@ h1 em {
 
 /* ABOUT */
 .about-text {
-  font-size: 15px;
+  font-size: 14.5px;
   line-height: 1.85;
   color: rgba(194,217,200,0.82);
   font-weight: 300;
@@ -289,16 +263,16 @@ h1 em {
 .place-card {
   background: rgba(58,107,74,0.14);
   border: 1px solid rgba(138,184,154,0.15);
-  border-radius: 16px;
-  padding: 22px;
+  border-radius: 14px;
+  padding: 18px 20px;
   display: flex;
   align-items: flex-start;
-  gap: 18px;
+  gap: 16px;
   backdrop-filter: blur(6px);
 }
 
 .place-icon {
-  font-size: 30px;
+  font-size: 26px;
   line-height: 1;
   flex-shrink: 0;
   margin-top: 2px;
@@ -306,11 +280,10 @@ h1 em {
 }
 
 .place-name {
-  font-family: 'Jost', sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   color: var(--parchment);
-  margin-bottom: 6px;
+  margin-bottom: 5px;
 }
 
 .place-desc {
@@ -323,8 +296,8 @@ h1 em {
 .goal-card {
   background: linear-gradient(135deg, rgba(27,58,45,0.9) 0%, rgba(15,34,25,0.95) 100%);
   border: 1px solid rgba(92,143,103,0.35);
-  border-radius: 16px;
-  padding: 24px 22px;
+  border-radius: 14px;
+  padding: 22px 20px;
   position: relative;
   overflow: hidden;
 }
@@ -344,16 +317,15 @@ h1 em {
   text-transform: uppercase;
   color: var(--gold);
   font-weight: 500;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .goal-text {
-  font-family: 'Jost', sans-serif;
-  font-size: 19px;
+  font-size: 17px;
   font-weight: 500;
   line-height: 1.5;
   color: var(--parchment);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .goal-sub {
@@ -363,17 +335,17 @@ h1 em {
 }
 
 /* FREE DAY */
-.free-day-list { display: flex; flex-direction: column; gap: 8px; }
+.free-day-list { display: flex; flex-direction: column; gap: 7px; }
 
 .free-day-item {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 13px;
   background: rgba(58,107,74,0.1);
   border: 1px solid rgba(138,184,154,0.1);
-  border-radius: 12px;
-  padding: 13px 16px;
-  font-size: 14px;
+  border-radius: 11px;
+  padding: 11px 14px;
+  font-size: 13.5px;
   color: rgba(194,217,200,0.8);
   transition: transform 0.2s ease, border-color 0.2s, background 0.2s;
 }
@@ -384,18 +356,16 @@ h1 em {
   background: rgba(58,107,74,0.2);
 }
 
-.free-day-item .icon { font-size: 18px; flex-shrink: 0; }
+.free-day-item .icon { font-size: 17px; flex-shrink: 0; }
 
 /* QUOTE */
 .good-side {
   background: rgba(58,107,74,0.12);
   border: 1px solid rgba(138,184,154,0.15);
-  border-radius: 16px;
-  padding: 22px 24px;
-  font-family: 'Jost', sans-serif;
-  font-style: normal;
+  border-radius: 14px;
+  padding: 20px 22px;
   font-weight: 300;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.75;
   color: rgba(194,217,200,0.85);
   position: relative;
@@ -408,7 +378,6 @@ h1 em {
   font-size: 72px;
   color: var(--fern);
   opacity: 0.25;
-  font-family: 'Jost', sans-serif;
   line-height: 1;
 }
 
@@ -416,43 +385,37 @@ h1 em {
 .games-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: 8px;
 }
 
 .game-card {
   background: rgba(58,107,74,0.12);
   border: 1px solid rgba(138,184,154,0.12);
-  border-radius: 14px;
-  padding: 16px 16px 14px;
+  border-radius: 12px;
+  padding: 14px 14px 12px;
   transition: transform 0.25s ease, border-color 0.25s, background 0.25s;
   backdrop-filter: blur(4px);
-  cursor: default;
 }
 
 .game-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   border-color: rgba(138,184,154,0.35);
   background: rgba(58,107,74,0.24);
 }
 
-.game-icon {
-  font-size: 26px;
-  margin-bottom: 10px;
-  filter: drop-shadow(0 0 6px rgba(92,143,103,0.5));
-}
+.game-icon { font-size: 22px; margin-bottom: 8px; }
 
 .game-name {
   font-size: 13px;
   font-weight: 500;
   color: var(--parchment);
-  margin-bottom: 4px;
-  line-height: 1.3;
+  margin-bottom: 3px;
 }
 
 .game-type {
   font-size: 11px;
   color: var(--sage);
-  opacity: 0.65;
+  opacity: 0.6;
   letter-spacing: 0.04em;
 }
 
@@ -460,8 +423,7 @@ h1 em {
 .book-card {
   background: rgba(58,107,74,0.12);
   border: 1px solid rgba(138,184,154,0.15);
-  border-radius: 16px;
-  padding: 0;
+  border-radius: 14px;
   display: flex;
   overflow: hidden;
   backdrop-filter: blur(6px);
@@ -469,114 +431,48 @@ h1 em {
 }
 
 .book-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   border-color: rgba(138,184,154,0.32);
 }
 
 .book-spine {
-  width: 6px;
+  width: 5px;
   background: linear-gradient(180deg, var(--fern) 0%, var(--moss) 100%);
   flex-shrink: 0;
 }
 
-.book-info {
-  padding: 20px 20px 18px;
-}
+.book-info { padding: 18px 18px 16px; }
 
 .book-title {
-  font-family: 'Jost', sans-serif;
-  font-style: normal;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 15px;
   color: var(--parchment);
   line-height: 1.4;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 
 .book-author {
-  font-size: 11px;
+  font-size: 10px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--gold);
   opacity: 0.8;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   font-weight: 500;
 }
 
 .book-note {
-  font-size: 13px;
+  font-size: 12.5px;
   color: rgba(194,217,200,0.65);
   line-height: 1.7;
-}
-
-/* FOOD CARD */
-.food-card {
-  background: rgba(58,107,74,0.12);
-  border: 1px solid rgba(138,184,154,0.15);
-  border-radius: 16px;
-  padding: 20px 22px;
-  backdrop-filter: blur(6px);
-}
-
-.food-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 18px;
-}
-
-.food-emoji { font-size: 22px; }
-
-.food-headline {
-  font-family: 'Jost', sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
-  color: rgba(194,217,200,0.75);
-}
-
-.food-flow { display: flex; flex-direction: column; gap: 6px; }
-
-.food-step {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  background: rgba(58,107,74,0.14);
-  border: 1px solid rgba(138,184,154,0.1);
-  border-radius: 12px;
-  padding: 13px 15px;
-}
-
-.food-step-icon { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
-
-.food-step-name {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--parchment);
-  margin-bottom: 4px;
-}
-
-.food-step-note {
-  font-size: 12px;
-  color: rgba(194,217,200,0.55);
-  line-height: 1.55;
-}
-
-.food-arrow {
-  text-align: center;
-  color: var(--fern);
-  opacity: 0.5;
-  font-size: 16px;
-  padding: 0 0 0 18px;
-  line-height: 1;
 }
 
 /* DREAM CARD */
 .dream-card {
   background: linear-gradient(135deg, rgba(27,58,45,0.85) 0%, rgba(15,34,25,0.95) 100%);
   border: 1px solid rgba(92,143,103,0.3);
-  border-radius: 16px;
-  padding: 30px 24px;
+  border-radius: 14px;
+  padding: 24px 22px;
   position: relative;
   overflow: hidden;
   backdrop-filter: blur(6px);
@@ -587,11 +483,10 @@ h1 em {
   top: 50%;
   right: -8px;
   transform: translateY(-50%);
-  font-family: 'Jost', sans-serif;
-  font-size: 72px;
+  font-size: 68px;
   font-weight: 600;
   letter-spacing: 0.08em;
-  color: rgba(92,143,103,0.08);
+  color: rgba(92,143,103,0.07);
   pointer-events: none;
   user-select: none;
   white-space: nowrap;
@@ -600,26 +495,25 @@ h1 em {
 .dream-content { position: relative; z-index: 1; }
 
 .dream-wave-icon {
-  width: 52px;
-  height: 40px;
-  margin-bottom: 14px;
+  width: 44px;
+  height: 34px;
+  margin-bottom: 12px;
   display: block;
   filter: drop-shadow(0 0 10px rgba(92,143,103,0.55));
 }
 
 .dream-place {
-  font-family: 'Jost', sans-serif;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 500;
   color: var(--parchment);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .dream-note {
   font-size: 13px;
   color: rgba(194,217,200,0.65);
   line-height: 1.7;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .dream-badge {
@@ -629,401 +523,74 @@ h1 em {
   background: rgba(201,168,76,0.12);
   border: 1px solid rgba(201,168,76,0.25);
   border-radius: 99px;
-  padding: 5px 14px;
+  padding: 4px 12px;
   font-size: 11px;
   color: var(--gold);
   letter-spacing: 0.06em;
 }
 
-/* ─── DATING HISTORY ─── */
-.history-timeline {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  position: relative;
-}
+/* ─── JOURNAL SECTION ─── */
 
-.history-timeline::before {
-  content: '';
-  position: absolute;
-  left: 19px;
-  top: 24px;
-  bottom: 24px;
-  width: 1px;
-  background: linear-gradient(180deg, rgba(196,122,122,0.3), rgba(92,143,103,0.2), transparent);
-}
-
-.history-entry {
-  display: flex;
-  gap: 18px;
-  padding-bottom: 20px;
-  position: relative;
-}
-
-.history-entry:last-child { padding-bottom: 0; }
-
-.history-dot-wrap {
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 4px;
-}
-
-.history-dot {
-  width: 14px; height: 14px;
-  border-radius: 50%;
-  border: 2px solid;
-  background: var(--deep);
-  flex-shrink: 0;
-  position: relative;
-  z-index: 1;
-}
-
-.history-dot--sweet {
-  border-color: rgba(138,184,154,0.7);
-  box-shadow: 0 0 8px rgba(92,143,103,0.3);
-}
-
-.history-dot--lesson {
-  border-color: rgba(196,122,122,0.6);
-  box-shadow: 0 0 8px rgba(196,122,122,0.2);
-}
-
-.history-card {
-  flex: 1;
-  border-radius: 14px;
-  padding: 18px 20px;
-  backdrop-filter: blur(4px);
-  transition: transform 0.22s ease, border-color 0.22s;
-}
-
-.history-card:hover { transform: translateX(4px); }
-
-.history-card--sweet {
-  background: rgba(58,107,74,0.12);
-  border: 1px solid rgba(138,184,154,0.15);
-}
-
-.history-card--sweet:hover { border-color: rgba(138,184,154,0.32); }
-
-.history-card--lesson {
-  background: rgba(40,18,18,0.5);
-  border: 1px solid rgba(196,122,122,0.18);
-}
-
-.history-card--lesson:hover { border-color: rgba(196,122,122,0.38); }
-
-.history-meta {
+.journal-header {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 8px;
-}
-
-.history-num {
-  font-size: 9px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  font-weight: 500;
-  padding: 3px 9px;
-  border-radius: 99px;
-}
-
-.history-num--sweet {
-  color: var(--sage);
-  background: rgba(92,143,103,0.15);
-  border: 1px solid rgba(92,143,103,0.2);
-}
-
-.history-num--lesson {
-  color: var(--rose);
-  background: rgba(196,122,122,0.12);
-  border: 1px solid rgba(196,122,122,0.2);
-}
-
-.history-badge {
-  font-size: 10px;
-  color: rgba(194,217,200,0.4);
-  letter-spacing: 0.06em;
-}
-
-.history-headline {
-  font-family: 'Jost', sans-serif;
-  font-weight: 500;
-  font-size: 15px;
-  color: var(--parchment);
-  margin-bottom: 7px;
-  line-height: 1.4;
-}
-
-.history-desc {
-  font-size: 13px;
-  color: rgba(194,217,200,0.6);
-  line-height: 1.72;
-}
-
-.history-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  margin-top: 10px;
-  font-size: 11px;
-  border-radius: 99px;
-  padding: 4px 12px;
-}
-
-.history-tag--sweet {
-  color: rgba(138,184,154,0.75);
-  background: rgba(92,143,103,0.1);
-  border: 1px solid rgba(92,143,103,0.18);
-}
-
-.history-tag--lesson {
-  color: rgba(196,122,122,0.75);
-  background: rgba(196,122,122,0.08);
-  border: 1px solid rgba(196,122,122,0.18);
-}
-
-.history-footer {
-  margin-top: 16px;
-  background: rgba(27,58,45,0.4);
-  border: 1px solid rgba(92,143,103,0.2);
-  border-radius: 12px;
-  padding: 14px 18px;
-  font-family: 'Jost', sans-serif;
-  font-style: normal;
-  font-weight: 300;
-  font-size: 13.5px;
-  color: rgba(194,217,200,0.6);
-  line-height: 1.7;
-  text-align: center;
-}
-
-/* ─── PARTNER SECTION ─── */
-
-.partner-hero {
-  background: linear-gradient(135deg, rgba(40,18,18,0.85) 0%, rgba(15,20,25,0.95) 100%);
-  border: 1px solid var(--rose-line);
-  border-radius: 20px;
-  padding: 28px 24px 24px;
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 16px;
-  backdrop-filter: blur(8px);
-}
-
-.partner-hero::before {
-  content: '';
-  position: absolute;
-  top: -60px; right: -60px;
-  width: 180px; height: 180px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(196,122,122,0.12) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.partner-hero::after {
-  content: '♡';
-  position: absolute;
-  bottom: -10px; right: 18px;
-  font-size: 88px;
-  color: rgba(196,122,122,0.05);
-  pointer-events: none;
-  user-select: none;
-  line-height: 1;
-}
-
-.partner-eyebrow {
-  font-size: 10px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--rose);
-  font-weight: 500;
-  margin-bottom: 10px;
-  opacity: 0.85;
-}
-
-.partner-headline {
-  font-family: 'Jost', sans-serif;
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 1.45;
-  color: var(--parchment);
-  margin-bottom: 12px;
-}
-
-/* no italic on em inside partner-headline */
-.partner-headline em {
-  font-style: normal;
-  color: rgba(196,122,122,0.85);
-}
-
-.partner-desc {
-  font-size: 13.5px;
-  color: rgba(194,217,200,0.65);
-  line-height: 1.8;
-  position: relative;
-  z-index: 1;
-}
-
-/* TRAIT PILLS */
-.trait-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.trait-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  background: var(--rose-soft);
-  border: 1px solid var(--rose-line);
-  border-radius: 14px;
-  padding: 14px 16px;
-  transition: transform 0.22s ease, border-color 0.22s, background 0.22s;
-}
-
-.trait-row:hover {
-  transform: translateX(5px);
-  border-color: rgba(196,122,122,0.45);
-  background: rgba(196,122,122,0.22);
-}
-
-.trait-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
-
-.trait-title {
-  font-size: 13.5px;
-  font-weight: 500;
-  color: var(--parchment);
-  margin-bottom: 3px;
-}
-
-.trait-note {
-  font-size: 12px;
-  color: rgba(194,217,200,0.55);
-  line-height: 1.6;
-}
-
-/* DEALBREAKER CARD */
-.dealbreaker {
-  background: rgba(20,10,10,0.6);
-  border: 1px solid rgba(196,122,122,0.2);
-  border-left: 3px solid var(--rose);
-  border-radius: 14px;
-  padding: 18px 20px;
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  backdrop-filter: blur(4px);
-}
-
-.dealbreaker-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
-
-.dealbreaker-title {
-  font-size: 13px;
-  font-weight: 500;
-  color: rgba(196,122,122,0.9);
-  margin-bottom: 4px;
-  letter-spacing: 0.04em;
-}
-
-.dealbreaker-note {
-  font-size: 13px;
-  color: rgba(194,217,200,0.55);
-  line-height: 1.65;
-}
-
-/* DYNAMIC TAG */
-.dynamic-card {
-  background: linear-gradient(135deg, rgba(30,15,30,0.8) 0%, rgba(15,20,25,0.9) 100%);
-  border: 1px solid rgba(196,122,122,0.22);
-  border-radius: 16px;
-  padding: 22px 22px 20px;
-  position: relative;
-  overflow: hidden;
-  backdrop-filter: blur(6px);
-}
-
-.dynamic-bg {
-  position: absolute;
-  top: 50%; left: -20px;
-  transform: translateY(-50%);
-  font-family: 'Jost', sans-serif;
-  font-size: 60px;
-  font-weight: 600;
-  color: rgba(196,122,122,0.05);
-  pointer-events: none;
-  user-select: none;
-  white-space: nowrap;
-}
-
-.dynamic-content { position: relative; z-index: 1; }
-
-.dynamic-pair {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  justify-content: space-between;
   margin-bottom: 14px;
 }
 
-.dynamic-me, .dynamic-her {
-  flex: 1;
-  background: rgba(255,255,255,0.04);
-  border-radius: 10px;
-  padding: 12px 14px;
-  text-align: center;
-}
-
-.dynamic-me { border: 1px solid rgba(92,143,103,0.3); }
-.dynamic-her { border: 1px solid rgba(196,122,122,0.3); }
-
-.dynamic-who {
-  font-size: 9px;
-  letter-spacing: 0.18em;
+.journal-coming-soon {
+  font-size: 10px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  margin-bottom: 5px;
-  font-weight: 500;
+  color: rgba(138,184,154,0.45);
+  background: rgba(58,107,74,0.15);
+  border: 1px solid rgba(92,143,103,0.2);
+  border-radius: 99px;
+  padding: 3px 10px;
 }
 
-.dynamic-me .dynamic-who { color: var(--sage); }
-.dynamic-her .dynamic-who { color: var(--rose); opacity: 0.8; }
-
-.dynamic-trait {
-  font-family: 'Jost', sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  color: var(--parchment);
-  line-height: 1.35;
-}
-
-.dynamic-plus {
-  font-size: 22px;
-  color: rgba(196,122,122,0.4);
-  flex-shrink: 0;
-}
-
-.dynamic-note {
-  font-size: 12.5px;
-  color: rgba(194,217,200,0.55);
-  line-height: 1.7;
+.journal-empty {
+  border: 1.5px dashed rgba(92,143,103,0.22);
+  border-radius: 16px;
+  padding: 40px 24px;
   text-align: center;
-  font-style: normal;
+  backdrop-filter: blur(4px);
+  background: rgba(27,58,45,0.2);
+}
+
+.journal-empty-icon {
+  font-size: 32px;
+  margin-bottom: 14px;
+  opacity: 0.6;
+  filter: drop-shadow(0 0 10px rgba(92,143,103,0.4));
+}
+
+.journal-empty-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(194,217,200,0.5);
+  margin-bottom: 6px;
+}
+
+.journal-empty-sub {
+  font-size: 12.5px;
+  color: rgba(138,184,154,0.35);
+  line-height: 1.65;
+  max-width: 240px;
+  margin: 0 auto;
 }
 
 /* LINKS */
-.links { display: flex; flex-direction: column; gap: 10px; }
+.links { display: flex; flex-direction: column; gap: 9px; }
 
 .link-btn {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 20px;
+  padding: 14px 18px;
   background: rgba(58,107,74,0.12);
   border: 1px solid rgba(138,184,154,0.12);
-  border-radius: 14px;
+  border-radius: 13px;
   text-decoration: none;
   color: var(--parchment);
   font-size: 14px;
@@ -1038,24 +605,24 @@ h1 em {
   transform: translateX(5px);
 }
 
-.link-left { display: flex; align-items: center; gap: 14px; }
+.link-left { display: flex; align-items: center; gap: 13px; }
 
 .link-icon {
-  width: 36px; height: 36px;
-  border-radius: 10px;
+  width: 34px; height: 34px;
+  border-radius: 9px;
   background: rgba(58,107,74,0.3);
   border: 1px solid rgba(138,184,154,0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 17px;
+  font-size: 16px;
   flex-shrink: 0;
 }
 
-.link-name { font-size: 14px; color: var(--parchment); font-weight: 400; }
-.link-handle { font-size: 12px; color: var(--sage); margin-top: 2px; opacity: 0.75; }
+.link-name { font-size: 13.5px; color: var(--parchment); font-weight: 400; }
+.link-handle { font-size: 11.5px; color: var(--sage); margin-top: 2px; opacity: 0.7; }
 
-.arrow { color: var(--fern); font-size: 17px; transition: transform 0.2s; }
+.arrow { color: var(--fern); font-size: 16px; transition: transform 0.2s; }
 .link-btn:hover .arrow { transform: translateX(4px); }
 
 .link-btn--ig {
@@ -1080,8 +647,8 @@ h1 em {
 .footer {
   text-align: center;
   font-size: 12px;
-  color: rgba(138,184,154,0.4);
-  margin-top: 64px;
+  color: rgba(138,184,154,0.35);
+  margin-top: 56px;
   opacity: 0;
   animation: riseIn 1s cubic-bezier(.22,1,.36,1) 1s forwards;
   letter-spacing: 0.08em;
@@ -1097,8 +664,6 @@ h1 em {
 @media (max-width: 360px) {
   .info-grid { grid-template-columns: 1fr; }
   .games-grid { grid-template-columns: 1fr; }
-  .dynamic-pair { flex-direction: column; }
-  .dynamic-plus { transform: rotate(90deg); }
 }
 </style>
 </head>
@@ -1113,12 +678,12 @@ h1 em {
   <div class="hero">
     <div class="status-pill">
       <span class="status-dot"></span>
-      hot  &amp; single &lt;3
+      figuring things out, one step at a time
     </div>
     <p class="eyebrow">Hey, I'm</p>
     <h1>Azizul<br><em>Hakim.</em></h1>
     <p class="nickname">but everyone calls me Rishad &mdash; Jan 8, 2007</p>
-    <p class="quote-line">"Big dih, bigger heart — and somehow still the most patient person in the room."</p>
+    <p class="quote-line">"I have a way of becoming the person you didn't know you needed around."</p>
   </div>
 
   <div class="divider"></div>
@@ -1128,10 +693,10 @@ h1 em {
     <div class="info-grid">
       <div class="info-item"><p class="label">Age</p><p class="value">19</p></div>
       <div class="info-item"><p class="label">MBTI</p><p class="value">ISFJ</p></div>
-      <div class="info-item"><p class="label">Currently at</p><p class="value">Dhaka College, 12th</p></div>
-      <div class="info-item"><p class="label">Was at</p><p class="value">University Laboratory School &amp; College</p></div>
+      <div class="info-item"><p class="label">Currently at</p><p class="value">HSC 2026, Dhaka</p></div>
+      <div class="info-item"><p class="label">Was at</p><p class="value">Univ. Lab School &amp; College</p></div>
       <div class="info-item"><p class="label">City</p><p class="value">Dhaka, BD</p></div>
-      <div class="info-item"><p class="label">From</p><p class="value">Barishal, BD</p></div>
+      <div class="info-item"><p class="label">Roots</p><p class="value">Barishal, BD</p></div>
     </div>
   </div>
 
@@ -1139,8 +704,7 @@ h1 em {
     <p class="section-label">About</p>
     <p class="about-text">
       19, Dhaka. Still figuring things out — but doing it with intention.<br><br>
-      I'm the kind of person who notices the details most people scroll past. I cook, I game, I pick up a camera when something feels worth remembering. I love things that are <strong>natural</strong> — untouched, honest, real. Somewhere between late-night noodles and quiet walks through DU campus, I'm building toward something bigger.<br><br>
-      People don't always see it at first, but give it time — I have a way of becoming the person you didn't know you needed around.
+      I'm the kind of person who notices the details most people scroll past. I cook, I game, I pick up a camera when something feels worth remembering. I love things that are <strong>natural</strong> — untouched, honest, real. Somewhere between late-night noodles and quiet walks through DU campus, I'm building toward something bigger.
     </p>
   </div>
 
@@ -1150,7 +714,7 @@ h1 em {
       <div class="place-icon">🌿</div>
       <div>
         <p class="place-name">Dhaka University Area</p>
-        <p class="place-desc">There's something about the old trees, the open roads, the quiet that somehow exists inside a city of millions. It just feels like the world slows down there.</p>
+        <p class="place-desc">Old trees, open roads, a quiet that somehow exists inside a city of millions. The world slows down there.</p>
       </div>
     </div>
   </div>
@@ -1160,7 +724,7 @@ h1 em {
     <div class="goal-card">
       <p class="goal-label">The goal</p>
       <p class="goal-text">Build a tech startup from scratch — something that actually solves a real problem.</p>
-      <p class="goal-sub">Economics, entrepreneurship, a life that actually means something. I'm not in a hurry — I'm just making sure every step counts.</p>
+      <p class="goal-sub">Economics, entrepreneurship, a life that actually means something. Not in a hurry — just making sure every step counts.</p>
     </div>
   </div>
 
@@ -1168,7 +732,6 @@ h1 em {
     <p class="section-label">A free day looks like</p>
     <div class="free-day-list">
       <div class="free-day-item"><span class="icon">🍜</span><span>Making noodles — my own recipe, my own pace</span></div>
-      <div class="free-day-item"><span class="icon">📱</span><span>Scrolling social media, falling into rabbit holes</span></div>
       <div class="free-day-item"><span class="icon">📖</span><span>Reading — lately Things Only You See When You Slow Down</span></div>
       <div class="free-day-item"><span class="icon">💭</span><span>Just thinking about everything. For a long time.</span></div>
       <div class="free-day-item"><span class="icon">🌿</span><span>Being somewhere natural — or at least wishing I was</span></div>
@@ -1215,34 +778,7 @@ h1 em {
       <div class="book-info">
         <div class="book-title">Things Only You Can See When You Slow Down</div>
         <div class="book-author">Haemin Sunim</div>
-        <p class="book-note">The kind of book that makes you stop mid-page and just sit with a thought for a while. Feels like someone finally put words to what I already knew but couldn't say.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <p class="section-label">My restaurant order</p>
-    <div class="food-card">
-      <div class="food-header">
-        <span class="food-emoji">🍽️</span>
-        <span class="food-headline">The perfect meal, honestly</span>
-      </div>
-      <div class="food-flow">
-        <div class="food-step">
-          <div class="food-step-icon">🥘</div>
-          <div>
-            <div class="food-step-name">Nehari with Nun</div>
-            <div class="food-step-note">Slow-cooked, rich, the kind of meal that fills you up for the whole day. No substitutes.</div>
-          </div>
-        </div>
-        <div class="food-arrow">↓</div>
-        <div class="food-step">
-          <div class="food-step-icon">🥛</div>
-          <div>
-            <div class="food-step-name">Lacchhi to finish</div>
-            <div class="food-step-note">Cold, sweet, the perfect ending — non-negotiable, always at the last.</div>
-          </div>
-        </div>
+        <p class="book-note">Makes you stop mid-page and just sit with a thought. Feels like someone finally put words to what I already knew but couldn't say.</p>
       </div>
     </div>
   </div>
@@ -1257,7 +793,6 @@ h1 em {
           <line x1="41" y1="2" x2="41" y2="0.5" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" opacity="0.5"/>
           <line x1="46.2" y1="3.8" x2="47.2" y2="2.8" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" opacity="0.5"/>
           <line x1="48" y1="9" x2="49.5" y2="9" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" opacity="0.5"/>
-          <line x1="46.2" y1="14.2" x2="47.2" y2="15.2" stroke="#c9a84c" stroke-width="1.4" stroke-linecap="round" opacity="0.5"/>
           <path d="M2 22 C6 14, 13 10, 17 17 C21 24, 25 13, 30 15 C34 17, 36 11, 40 14 C43 16, 46 19, 50 18"
                 stroke="#5c8f67" stroke-width="2.6" stroke-linecap="round" fill="none"/>
           <path d="M2 28 C7 19, 15 16, 19 23 C23 30, 27 18, 33 21 C37 23, 40 17, 44 20 C47 22, 49 25, 50 24"
@@ -1266,7 +801,7 @@ h1 em {
                 stroke="#c2d9c8" stroke-width="1.4" stroke-linecap="round" fill="none" opacity="0.4"/>
         </svg>
         <div class="dream-place">Hawai'i, USA</div>
-        <p class="dream-note">Somewhere between the ocean and the mountains, where everything just feels alive and unhurried. The kind of place you see in pictures and think — I need to be there one day. One day.</p>
+        <p class="dream-note">Between the ocean and the mountains, where everything feels alive and unhurried. The kind of place you see in pictures and think — I need to be there one day.</p>
         <div class="dream-badge">✦ Someday bucket list</div>
       </div>
     </div>
@@ -1276,87 +811,33 @@ h1 em {
     <p class="section-label">Into</p>
     <div class="tags">
       <span class="tag">🍜 Cooking noodles</span>
-      <span class="tag">🌿 Nature &amp; natural things</span>
+      <span class="tag">🌿 Nature</span>
       <span class="tag">📷 Editing</span>
       <span class="tag">🎮 Gaming</span>
       <span class="tag">🚶 Walking</span>
       <span class="tag">✈️ Travelling</span>
-      <span class="tag">🎥 Fun videography</span>
-      <span class="tag">💻 Fun coding</span>
+      <span class="tag">🎥 Videography</span>
+      <span class="tag">💻 Coding</span>
       <span class="tag">🗣️ Yapping</span>
       <span class="tag">☕ Hangouts</span>
       <span class="tag">⚽ Sports</span>
     </div>
   </div>
 
-  <div class="divider divider--rose"></div>
+  <div class="divider"></div>
 
-  <!-- ─── DATING HISTORY ─── -->
-
+  <!-- ─── JOURNAL ─── -->
   <div class="section">
-    <p class="section-label section-label--rose">Dating history</p>
-
-    <div class="history-timeline">
-
-      <div class="history-entry">
-        <div class="history-dot-wrap">
-          <div class="history-dot history-dot--sweet"></div>
-        </div>
-        <div class="history-card history-card--sweet">
-          <div class="history-meta">
-            <span class="history-num history-num--sweet">01</span>
-            <span class="history-badge">· long distance</span>
-          </div>
-          <div class="history-headline">The primary school classmate</div>
-          <p class="history-desc">
-            She was sweet — genuinely so. We'd known each other from school, and what started as a connection carried into something more. But we were young, and distance has a way of exposing the gaps that immaturity can't bridge. We ended on the kind of terms that don't leave scars — just a quiet understanding that the timing wasn't right and neither of us were ready.
-          </p>
-          <div class="history-tag history-tag--sweet">🌱 Good memories, soft ending</div>
-        </div>
-      </div>
-
-      <div class="history-entry">
-        <div class="history-dot-wrap">
-          <div class="history-dot history-dot--lesson"></div>
-        </div>
-        <div class="history-card history-card--lesson">
-          <div class="history-meta">
-            <span class="history-num history-num--lesson">02</span>
-            <span class="history-badge">· long distance · met on Discord</span>
-          </div>
-          <div class="history-headline">The one who taught me what I don't want</div>
-          <p class="history-desc">
-            We had good moments — I won't pretend otherwise. But her values and mine weren't built the same. Character matters more than chemistry, and I learned that the hard way. We never met in person, and looking back, that's probably for the best. What I took from it: I know exactly what I'm not willing to compromise on now.
-          </p>
-          <div class="history-tag history-tag--lesson">📖 A lesson, not a loss</div>
-        </div>
-      </div>
-
+    <div class="journal-header">
+      <p class="section-label" style="margin-bottom:0">Journal</p>
+      <span class="journal-coming-soon">Coming soon</span>
     </div>
-
-    <div class="history-footer">
-      Two completely different people — one with a good heart, one with a very different kind of character. Both long distance, never met. Both taught me something. Now I know what I'm actually looking for.
+    <div class="journal-empty">
+      <div class="journal-empty-icon">📝</div>
+      <div class="journal-empty-title">Nothing here yet</div>
+      <div class="journal-empty-sub">Articles, photos & thoughts — a quiet corner of the internet, just for me.</div>
     </div>
   </div>
-
-  <!-- ─── PARTNER PREFERENCE ─── -->
-
-  <div class="section">
-    <p class="section-label section-label--rose">Looking for</p>
-
-    <div class="partner-hero">
-      <p class="partner-eyebrow">My type</p>
-      <p class="partner-headline">Someone who feels like <em>calm</em> and <em>fire</em> at the same time.</p>
-      <p class="partner-desc">
-        Someone who is all in — who wants her person completely and means it.
-        She doesn't let me feel alone even in a crowded room. She comes from a
-        warm, close-knit family and carries that love into everything she does.
-        Independent enough to stand on her own, yet she wants a man — not needs
-        one out of weakness, but chooses one out of depth. And when she finds him,
-        he is enough. In the soft moments and the hard ones both.
-      </p>
-    </div>
-
 
   <div class="divider"></div>
 
@@ -1367,7 +848,7 @@ h1 em {
       <a href="https://instagram.com/rishadhq" class="link-btn link-btn--ig" target="_blank">
         <div class="link-left">
           <div class="link-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
               <rect x="2" y="2" width="20" height="20" rx="6" stroke="#8ab89a" stroke-width="1.8"/>
               <circle cx="12" cy="12" r="4.5" stroke="#8ab89a" stroke-width="1.8"/>
               <circle cx="17.5" cy="6.5" r="1" fill="#8ab89a"/>
@@ -1384,14 +865,14 @@ h1 em {
       <a href="https://facebook.com/taughtrishad" class="link-btn link-btn--fb" target="_blank">
         <div class="link-left">
           <div class="link-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
               <rect x="2" y="2" width="20" height="20" rx="6" stroke="#7aaedc" stroke-width="1.8"/>
               <path d="M13 21v-8h2.5l.5-3H13V8.5C13 7.67 13.33 7 14.5 7H16V4.5S15.1 4 13.8 4C11.6 4 11 5.4 11 7v3H8.5v3H11v8" stroke="#7aaedc" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
           <div>
             <div class="link-name">Facebook</div>
-            <div class="link-handle">facebook.com/taughtrishad</div>
+            <div class="link-handle">taughtrishad</div>
           </div>
         </div>
         <span class="arrow">→</span>
@@ -1412,7 +893,7 @@ h1 em {
         <div class="link-left">
           <div class="link-icon">✉️</div>
           <div>
-            <div class="link-name">Email me</div>
+            <div class="link-name">Email</div>
             <div class="link-handle">azsksk123@gmail.com</div>
           </div>
         </div>
@@ -1552,8 +1033,8 @@ class WindStreak {
   }
 }
 
-const leaves     = Array.from({ length: 55 }, () => new Leaf());
-const windStreaks = Array.from({ length: 18 }, () => new WindStreak());
+const leaves     = Array.from({ length: 45 }, () => new Leaf());
+const windStreaks = Array.from({ length: 14 }, () => new WindStreak());
 
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
